@@ -1,19 +1,23 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { Text } from "react-native";
+import styled from "styled-components/native";
 
 const Counter = () => {
-  const year = new Date().getFullYear();
   const [count, setCount] = useState<number>(0);
+
+  const increaseTheAmount = (prev: number) => prev + 1;
+
+  const increment = () => {
+    setTimeout(() => setCount(prev => prev + 1), Math.random() * 1000)
+  }
 
   return (
     <Container>
       <Text>Clicked {count} times</Text>
-        <Button
-            onPress={() => setCount(count + 1)}
-        >Increment</Button>
+      <Button onPress={increment}>
+        <Text>Increment</Text>
+      </Button>
     </Container>
-
   );
 };
 
@@ -24,8 +28,15 @@ const Container = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-    background-color: yellow;
-    padding: 10;
+  background-color: yellow;
+  padding: 10px;
 `;
 
 export default Counter;
+
+
+
+
+
+
+
