@@ -12,17 +12,22 @@ interface ItemT {
 // // Alternative:
 // fetch('https://picsum.photos/v2/list?page=1&limit=100')
 //   .then(response => response.json())
-//   .then(data => setData(data));
+//   .then(data => setData(data))
+//   .catch(error => console.log('error', error))
 
-const Pictorio = () => {
+const PhotoList = () => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch(
-      "https://picsum.photos/v2/list?page=1&limit=100"
-    );
-    const data = await response.json();
-    setData(data);
+    try {
+      const response = await fetch(
+        "https://picsum.photos/v2/list?page=1&limit=100"
+      );
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.log('error', error)
+    }
   };
 
   useEffect(() => {
@@ -40,7 +45,7 @@ const Pictorio = () => {
   );
 };
 
-export default Pictorio;
+export default PhotoList;
 
 const styles = StyleSheet.create({
   container: {
